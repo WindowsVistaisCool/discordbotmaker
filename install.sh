@@ -1,4 +1,3 @@
 #!/bin/bash
 
-python3 -c 'import installer; installer.script_install'
-echo "well what did you expect?"
+python3 -c 'import maker; maker.script_install()'
