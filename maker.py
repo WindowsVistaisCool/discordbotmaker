@@ -23,7 +23,7 @@ def wjson(file, paramtr, valu):
   with open(file, 'w') as v:
     json.dump(x, v, indent=4)
 
-def setup()
+def setup():
   print(f"To make a discord bot, you first need to go to {clr.UNDERLINE}https://discord.com/developers/applications/{clr.e} and click 'New Application' and type the name of your bot in the field.\nNext, click the 'bot' tab on the left hand side and click create bot.\nThen just under the name/discriminator(number) is the token. Click copy and then paste it in the field below:\n")
   tken = input("Paste or enter your token: ")
   if len(tken) > 0:
@@ -45,7 +45,7 @@ def setupstatus(statinput, activity):
         wjson('config.json', 'activity', 'L')
         wjson('config.json', 'status', 'ONL')
       else:
-        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}")
+        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}')
     elif statinput == "IDL":
       if activity == "Game":
         wjson('config.json', 'activity', 'G')
@@ -57,7 +57,7 @@ def setupstatus(statinput, activity):
         wjson('config.json', 'activity', 'L')
         wjson('config.json', 'status', 'IDL')
       else:
-        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}")
+        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}')
     elif statinput == "DND":
       if activity == "Game":
         wjson('config.json', 'activity', 'G')
@@ -69,22 +69,22 @@ def setupstatus(statinput, activity):
         wjson('config.json', 'activity', 'L')
         wjson('config.json', 'status', 'DND')
       else:
-        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}")
+        print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified activity was not found{clr.e}')
     else:
-      print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified status was not found{clr.e}")
-            
+      print(f'{clr.r}{clr.BOLD}ERROR{clr.e}\n{clr.r}The specified status was not found{clr.e}')
+
   else:
     setcirclestatus(activity)
-    
+
 def setcirclestatus(nameact):
   if nameact == "Streaming":
     wjson('config.json', 'activity', 'S')
     wjson('config.json', 'status', 'STR')
   else:
-    print('Now, you need to set the status of the bot. Type "ONL" for online, "IDL" for afk/idle, or "DND" for Do not Disturb.")
+    print('Now, you need to set the status of the bot. Type "ONL" for online, "IDL" for afk/idle, or "DND" for Do not Disturb.')
     stat = input("Status: ")
     setupstatus(stat, nameact)
-          
+
 def setstatus():
   print(f'{clr.g}Type "Game" for game activity, "Streaming" for streaming activity, "Watching" or "Listening" for a watching/listening activity, or "None" for no activity{clr.e}')
   act = input("Activity Type: ")
@@ -128,15 +128,16 @@ def setstatus():
   else:
     setstatus()
   setcirclestatus(act)
-          
+
 def main():
   setup()
-  
+
 def script_install():
   if rjson('config.json', 'install') == 'yes':
     print(f"{clr.g}FIRST RUN DETECTED{clr.e}\n{clr.y}Installing Repositories{clr.e}")
     system("python3 -m pip install discord.py[voice]")
-    wjson('config.json', 'install', 'no')
+    system('echo "test"')
+    wjson('config.json', "install", "no")
     main()
   else:
     main()
