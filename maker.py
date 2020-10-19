@@ -1,4 +1,5 @@
 import json
+from os import system
 
 class clr:
   HEADER = '\033[95m'
@@ -21,11 +22,12 @@ def wjson(file, paramtr, valu):
   x[paramtr] = valu
   with open(file, 'w') as v:
     json.dump(x, v, indent=4)
+
 def setup()
   print(f"To make a discord bot, you first need to go to {clr.UNDERLINE}https://discord.com/developers/applications/{clr.e} and click 'New Application' and type the name of your bot in the field.\nNext, click the 'bot' tab on the left hand side and click create bot.\nThen just under the name/discriminator(number) is the token. Click copy and then paste it in the field below:\n")
   tken = input("Paste or enter your token: ")
   if len(tken) > 0:
-    wjson('config.json', 'token' tken)
+    wjson('config.json', 'token', tken)
     print("Token accepted!")
   else:
     setup()
@@ -130,3 +132,11 @@ def setstatus():
 def main():
   setup()
   
+def script_install():
+  if rjson('config.json', 'install') == 'yes':
+    print(f"{clr.g}FIRST RUN DETECTED{clr.e}\n{clr.y}Installing Repositories{clr.e}")
+    system("python3 -m pip install discord.py[voice]")
+    wjson('config.json', 'install', 'no')
+    main()
+  else:
+    main()
